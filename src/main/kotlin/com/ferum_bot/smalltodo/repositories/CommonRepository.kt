@@ -10,7 +10,7 @@ interface CommonRepository<Model> {
 
     fun delete(model: Model): DeleteResult
 
-    fun delete(models: Iterable<Model>): Iterable<DeleteResult>
+    fun delete(models: Iterable<Model>): DeleteResult
 
     fun findById(id: String): Model?
 

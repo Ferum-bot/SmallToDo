@@ -20,7 +20,7 @@ data class ToDoModel(
 
     val lastModifiedDate: LocalDateTime,
 
-    val isComplete: Boolean,
+    var isComplete: Boolean,
 ): Comparable<ToDoModel> {
 
     override fun equals(other: Any?): Boolean {

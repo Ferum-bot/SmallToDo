@@ -6,29 +6,43 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class InMemoryRepository: CommonRepository<ToDoModel> {
-    
+
+    private val models: MutableSet<ToDoModel> = mutableSetOf()
+
     override fun safe(model: ToDoModel): ToDoModel {
-        TODO("Not yet implemented")
+        models.add(model)
+        return model
     }
 
     override fun safe(models: Iterable<ToDoModel>): Iterable<ToDoModel> {
-        TODO("Not yet implemented")
+        this.models.addAll(models)
+        return models
     }
 
     override fun delete(model: ToDoModel): DeleteResult {
-        TODO("Not yet implemented")
+        val result = models.remove(model)
+        return if (result) {
+            DeleteResult.MODEL_DELETED
+        } else {
+            DeleteResult.MODEL_WAS_NOT_DELETED
+        }
     }
 
-    override fun delete(models: Iterable<ToDoModel>): Iterable<DeleteResult> {
-        TODO("Not yet implemented")
+    override fun delete(models: Iterable<ToDoModel>): DeleteResult {
+        val result = this.models.removeAll(models)
+        return if (result) {
+            DeleteResult.MODEL_DELETED
+        } else {
+            DeleteResult.MODEL_WAS_NOT_DELETED
+        }
     }
 
     override fun findById(id: String): ToDoModel? {
-        TODO("Not yet implemented")
+        return models.find { it.id == id }
     }
 
     override fun getAll(): Iterable<ToDoModel> {
-        TODO("Not yet implemented")
+        return models
     }
 
 }
