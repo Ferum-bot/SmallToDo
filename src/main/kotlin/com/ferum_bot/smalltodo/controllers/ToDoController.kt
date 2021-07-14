@@ -19,6 +19,8 @@ class ToDoController {
     @Autowired
     private lateinit var repository: CommonRepository<ToDoModel>
 
+
+
     @GetMapping("/all")
     fun getAllToDos(): ResponseEntity<Iterable<ToDoModel>> {
         return ResponseEntity.ok(repository.getAll())

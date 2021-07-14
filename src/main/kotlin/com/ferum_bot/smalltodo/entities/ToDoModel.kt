@@ -16,11 +16,11 @@ data class ToDoModel(
 
     val description: String,
 
-    val createdDate: LocalDateTime,
+    val createdDate: LocalDateTime = LocalDateTime.now(),
 
-    val lastModifiedDate: LocalDateTime,
+    val lastModifiedDate: LocalDateTime = LocalDateTime.now(),
 
-    var isComplete: Boolean,
+    var isComplete: Boolean = false,
 ): Comparable<ToDoModel> {
 
     override fun equals(other: Any?): Boolean {
